@@ -2,27 +2,27 @@
   <!-- eslint-disable vue/html-self-closing -->
   <section>
     <h1>Page title</h1>
-    <h2>Are you filling out this form for yourself or someone else?</h2>
-    <div>
+    <form>
+      <h2>Are you filling out this form for yourself or someone else?</h2>
       <input
         id="myself"
         v-model="who"
         type="radio"
         name="who"
-        value="myself">
+        value="myself"
+        required="required">
       <label
-        for="myself">I’m filling it out for my household.</label>
-    </div>
-    <div>
+        for="myself">I’m filling it out for my household.</label><br>
       <input
         id="someone"
         v-model="who"
         type="radio"
         name="who"
-        value="someone">
+        value="someone"
+        required="required">
       <label
         for="someone">I’m helping someone fill it out for their household.</label>
-    </div>
+    </form>
     <div
       v-if="who == 'someone'"
       class="helper-text">
@@ -32,7 +32,8 @@
     <nuxt-link
       :class="{ disabled: who == '' }"
       class="button"
-      to="/step-2">Next <i class="far fa-arrow-right"></i></nuxt-link>
+      to="/step-2"
+      @click="submit()">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/"
       class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
@@ -43,6 +44,11 @@ export default {
   data() {
     return {
       who: []
+    }
+  },
+  methods: {
+    submit() {
+      this.data.push(this.who)
     }
   }
 }

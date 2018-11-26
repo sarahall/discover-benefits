@@ -47,7 +47,8 @@
     <nuxt-link
       :class="{ disabled: zip == '' }"
       class="button"
-      to="/step-3">Next <i class="far fa-arrow-right"></i></nuxt-link>
+      to="/step-3"
+      @click="$store.commit(zip)">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-1"
       class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
@@ -58,8 +59,18 @@
 export default {
   data() {
     return {
-      zip: [],
+      //zip: [],
       residence: ''
+    }
+  },
+  computed: {
+    zip: {
+      get() {
+        return this.$store.state.form.zip
+      },
+      set(value) {
+        this.$store.commit('updateZip', value)
+      }
     }
   }
 }

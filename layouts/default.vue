@@ -6,18 +6,22 @@
       integrity="sha384-j8y0ITrvFafF4EkV1mPW0BKm6dp3c+J9Fky22Man50Ofxo2wNe5pT1oZejDH9/Dt"
       crossorigin="anonymous">
 
-
-    <philaAppHeader
-      app-title="OneFormPhilly"/>
-    <philaAppSubHeader />
-    <div class="grid-container">
-      <div class="grid-x">
-        <section class="cell">
-          <ProgressBar />
-          <nuxt/>
-        </section>
-      </div>
+    <div class="fixed-head">
+      <philaAppHeader
+        app-title="OneFormPhilly"/>
+      <philaAppSubHeader />
     </div>
+    <main class="content">
+      <div class="grid-container">
+        <div class="grid-x">
+          <section class="cell">
+            <ProgressBar />
+            <nuxt/>
+          </section>
+        </div>
+      </div>
+    </main>
+
     <philaAppFooter
       feedback-link="https://www.phila.gov/feedback/"/>
   </div>
@@ -41,4 +45,17 @@ export default {
 
 <style>
 @import '../node_modules/phila-app-css/dist/css/phila-app.min.css';
+.fixed-head {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+main {
+  height: calc(100vh - 110px - 36px);
+  position: relative;
+  overflow: scroll;
+  top: 110px;
+  width: 100%;
+}
 </style>
