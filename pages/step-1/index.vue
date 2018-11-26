@@ -41,11 +41,8 @@
 export default {
   data() {
     return {
-      who: [],
-      isDisabled: true
+      who: []
     }
   }
 }
 </script>
-<style>
-</style>
