@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/html-self-closing -->
   <section>
     <h1>Page title</h1>
     <h2>Are you filling out this form for yourself or someone else?</h2>
@@ -31,10 +32,10 @@
     <nuxt-link
       :class="{ disabled: who == '' }"
       class="button"
-      to="/step-2">Next</nuxt-link>
+      to="/step-2">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/"
-      class="prev-button">Previous question</nuxt-link>
+      class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
   </section>
 </template>
 <script>

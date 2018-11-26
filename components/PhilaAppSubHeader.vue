@@ -1,14 +1,14 @@
 <template>
-  <div class="app-nav">
+  <div class="sub-header app-nav">
     <div class="row expanded">
       <div class="columns">
         <nav>
           <ul>
             <li>
-              <a href="#">Link 1</a>
+              <a href="#">What may I qualify for?</a>
             </li>
             <li>
-              <a href="#">Link 2</a>
+              <a href="#">All available programs</a>
             </li>
           </ul>
         </nav>

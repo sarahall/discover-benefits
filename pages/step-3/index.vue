@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/html-self-closing -->
   <section>
     <h1>About you</h1>
     <p class="helper-text">
@@ -115,10 +116,10 @@
 
     <nuxt-link
       class="button"
-      to="/step-4">Next</nuxt-link>
+      to="/step-4">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-2"
-      class="prev-button">Previous question</nuxt-link>
+      class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
   </section>
 </template>
 

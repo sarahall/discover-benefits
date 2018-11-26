@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable vue/html-self-closing -->
   <section>
     <h1>About your residence</h1>
     <form>
@@ -46,10 +47,10 @@
     <nuxt-link
       :class="{ disabled: zip == '' }"
       class="button"
-      to="/step-3">Next</nuxt-link>
+      to="/step-3">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-1"
-      class="prev-button">Previous question</nuxt-link>
+      class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
   </section>
 </template>
 

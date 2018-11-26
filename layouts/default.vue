@@ -13,6 +13,7 @@
     <div class="grid-container">
       <div class="grid-x">
         <section class="cell">
+          <ProgressBar />
           <nuxt/>
         </section>
       </div>
@@ -26,12 +27,14 @@
 import PhilaAppHeader from '~/components/PhilaAppHeader.vue'
 import PhilaAppSubHeader from '~/components/PhilaAppSubHeader.vue'
 import PhilaAppFooter from '~/components/PhilaAppFooter.vue'
+import ProgressBar from '~/components/ProgressBar.vue'
 
 export default {
   components: {
     PhilaAppHeader,
     PhilaAppSubHeader,
-    PhilaAppFooter
+    PhilaAppFooter,
+    ProgressBar
   }
 }
 </script>
