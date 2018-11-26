@@ -11,6 +11,7 @@
       class="button"
       to="/step-4">Next</nuxt-link>
     <nuxt-link
-      to="/step-2">Previous question</nuxt-link>
+      to="/step-2"
+      class="prev-button">Previous question</nuxt-link>
   </section>
 </template>

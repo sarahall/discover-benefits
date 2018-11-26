@@ -56,4 +56,15 @@ export default {
 </script>
 
 <style>
+.button {
+  margin-top: 2rem;
+}
+.prev-button {
+  display: block;
+  margin-top: 2rem;
+}
+.helper-text {
+  font-size: 0.9rem;
+  font-style: italic;
+}
 </style>
