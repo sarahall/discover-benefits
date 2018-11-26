@@ -69,6 +69,7 @@ export default {
         return this.$store.state.form.zip
       },
       set(value) {
+        console.log(value)
         this.$store.commit('updateZip', value)
       }
     }
