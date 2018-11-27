@@ -29,7 +29,7 @@
           for="zip-code"><h2>What is the ZIP code of your primary residence?</h2></label>
         <input
           id="zip-code"
-          v-model="zip"
+          v-model.number="zip"
           name="zip-code"
           type="number"
           min="19019"
@@ -43,12 +43,10 @@
       </div>
     </form>
 
-
     <nuxt-link
       :class="{ disabled: zip == '' }"
       class="button"
-      to="/step-3"
-      @click="$store.commit(zip)">Next <i class="far fa-arrow-right"></i></nuxt-link>
+      to="/step-3">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-1"
       class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
@@ -59,7 +57,6 @@
 export default {
   data() {
     return {
-      //zip: [],
       residence: ''
     }
   },
@@ -72,6 +69,11 @@ export default {
         console.log(value)
         this.$store.commit('updateZip', value)
       }
+    }
+  },
+  methods: {
+    updateZip(e) {
+      this.$store.commit('updateZip', e.target.value)
     }
   }
 }

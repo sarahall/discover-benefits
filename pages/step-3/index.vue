@@ -11,6 +11,7 @@
           for="age"><h2>How old are you?</h2></label>
         <input
           id="age"
+          v-model.number="age"
           name="age"
           type="number"
           min="18"
@@ -54,7 +55,7 @@
       </div>
 
       <div
-        v-if="maritalStatus == 'married'"
+        v-if="maritalStatus === 'married'"
         class="question">
         <h3>Is your spouse 65 or older?</h3>
         <input
@@ -73,9 +74,8 @@
           for="spouse-under-65">No</label>
       </div>
 
-
       <div
-        v-if="maritalStatus == 'widowed'"
+        v-if="maritalStatus === 'widowed'"
         class="question">
         <h3>Was your spouse 65 or older when they passed away?</h3>
         <input
@@ -98,6 +98,7 @@
         <h2>Does anyone in your household have a physical disability?</h2>
         <input
           id="disabled"
+          v-model="disability"
           type="radio"
           name="disability"
           value="yes">
@@ -105,6 +106,7 @@
           for="disabled">Yes</label><br>
         <input
           id="not-disabled"
+          v-model="disability"
           type="radio"
           name="disability"
           value="no">
@@ -115,6 +117,7 @@
     </form>
 
     <nuxt-link
+      :class="{ disabled: (age === '') || (maritalStatus === '') || (disability === '') }"
       class="button"
       to="/step-4">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -127,7 +130,41 @@
 export default {
   data() {
     return {
-      maritalStatus: []
+      //maritalStatus: []
+    }
+  },
+  computed: {
+    age: {
+      get() {
+        return this.$store.state.form.age
+      },
+      set(value) {
+        this.$store.commit('updateAge', value)
+      }
+    },
+    maritalStatus: {
+      get() {
+        return this.$store.state.form.maritalStatus
+      },
+      set(value) {
+        this.$store.commit('updateMaritalStatus', value)
+      }
+    },
+    disability: {
+      get() {
+        return this.$store.state.form.disability
+      },
+      set(value) {
+        this.$store.commit('updateDisability', value)
+      }
+    }
+  },
+  methods: {
+    // updateAge(e) {
+    //   this.$store.commit('updateAge', e.target.value)
+    // },
+    updateMaritalStatus(e) {
+      this.$store.commit('updateMaritalStatus', e.target.value)
     }
   }
 }

@@ -10,6 +10,7 @@
       <h2>Do you rent or own the place where you live?</h2>
       <input
         id="rent"
+        v-model="housingStatus"
         type="radio"
         name="housing-status"
         value="rent">
@@ -17,6 +18,7 @@
         for="rent">I rent it.</label><br>
       <input
         id="own"
+        v-model="housingStatus"
         type="radio"
         name="housing-status"
         value="own">
@@ -24,17 +26,20 @@
         for="own">I own it.</label><br>
       <input
         id="neither"
+        v-model="housingStatus"
         type="radio"
         name="housing-status"
         value="neither">
       <label
         for="neither">I do not rent or own.</label>
     </div>
+
     <div class="question">
       <label
         for="years-lived"><h2>How many years have you lived in your primary residence?</h2></label>
       <input
         id="years-lived"
+        v-model.number="yearsLived"
         name="years-lived"
         type="number"
         min="1"
@@ -60,6 +65,7 @@
     </div>
 
     <nuxt-link
+      :class="{ disabled: (housingStatus === '') }"
       class="button"
       to="/step-5">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -67,6 +73,36 @@
       class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
   </section>
 </template>
+
+<script>
+export default {
+  computed: {
+    housingStatus: {
+      get() {
+        return this.$store.state.form.housingStatus
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateHousingStatus', value)
+      }
+    },
+    yearsLived: {
+      get() {
+        return this.$store.state.form.yearsLived
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateYearsLived', value)
+      }
+    }
+  },
+  methods: {
+    updateHousingStatus(e) {
+      this.$store.commit('updateHousingStatus', e.target.value)
+    }
+  }
+}
+</script>
 
 <style>
 #years-lived {
