@@ -1,6 +1,8 @@
 <template>
   <!-- eslint-disable vue/html-self-closing -->
   <section>
+    <ProgressBar
+      :step="4" />
     <h1>About your home</h1>
     <p class="helper-text">
       Now, let’s learn more about the place where you live.
@@ -33,6 +35,7 @@
       <label
         for="neither">I do not rent or own.</label>
     </div>
+    {{ housing }}
 
     <div class="question">
       <label
@@ -50,22 +53,24 @@
       <h2>Are you up to date on your water bill?</h2>
       <input
         id="water-bill-paid"
+        v-model="waterBill"
         type="radio"
-        name="water-bill"
+        name="waterBill"
         value="paid">
       <label
         for="water-bill-paid">Yes</label><br>
       <input
         id="water-bill-unpaid"
+        v-model="waterBill"
         type="radio"
-        name="water-bill"
+        name="waterBill"
         value="unpaid">
       <label
         for="water-bill-unpaid">No</label>
     </div>
 
     <nuxt-link
-      :class="{ disabled: (housing === '') }"
+      :class="isDisabled"
       class="button"
       to="/step-5">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -75,8 +80,19 @@
 </template>
 
 <script>
+import ProgressBar from '~/components/ProgressBar.vue'
+
 export default {
+  components: {
+    ProgressBar
+  },
   computed: {
+    isDisabled() {
+      return {
+        disabled:
+          this.housing === '' || this.yearsLived === '' || this.waterBill === ''
+      }
+    },
     housing: {
       get() {
         return this.$store.state.form.housing
@@ -94,11 +110,15 @@ export default {
         console.log(value)
         this.$store.commit('updateYearsLived', value)
       }
-    }
-  },
-  methods: {
-    updatehousing(e) {
-      this.$store.commit('updatehousing', e.target.value)
+    },
+    waterBill: {
+      get() {
+        return this.$store.state.form.waterBill
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateWaterBill', value)
+      }
     }
   }
 }

@@ -1,6 +1,8 @@
 <template>
   <!-- eslint-disable vue/html-self-closing -->
   <section>
+    <ProgressBar
+      :step="3" />
     <h1>About you</h1>
     <p class="helper-text">
       To begin, tell us a little about yourself.
@@ -52,6 +54,7 @@
       <label
         for="widowed">I’m widowed.</label>
     </div>
+    {{ marital }}
     <div
       v-if="marital === 'married'"
       class="question">
@@ -111,7 +114,7 @@
       <label
         for="not-disabled">No</label>
     </div>
-
+    {{ disability }}
     <nuxt-link
       :class="isDisabled"
       class="button"
@@ -123,7 +126,12 @@
 </template>
 
 <script>
+import ProgressBar from '~/components/ProgressBar.vue'
+
 export default {
+  components: {
+    ProgressBar
+  },
   data() {
     return {
       //marital: []

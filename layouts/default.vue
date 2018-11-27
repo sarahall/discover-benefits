@@ -15,7 +15,6 @@
       <div class="grid-container">
         <div class="grid-x">
           <section class="cell">
-            <ProgressBar />
             <nuxt/>
           </section>
         </div>

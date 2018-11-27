@@ -1,10 +1,10 @@
 <template>
-
   <div class="progress-container">
     <div class="progress-section progress-bg">
       <div
-        class="progress-container progress-color"
-        style="width: 50%;"><span class="progress-indicator">{{ progress }}%</span>
+        v-bind="percent"
+        class="progress-container progress-color">
+        <span class="progress-indicator">{{ (step / totalSteps) * 100 + '%' }}</span>
       </div>
     </div>
     <span class="small-bold">Step {{ step }} of {{ totalSteps }}</span>
@@ -27,6 +27,15 @@ export default {
       type: Number,
       required: false,
       default: 5
+    }
+  },
+  computed: {
+    percent() {
+      return {
+        style: {
+          width: (this.step / this.totalSteps) * 100 + '%'
+        }
+      }
     }
   }
 }

@@ -1,6 +1,9 @@
 <template>
   <!-- eslint-disable vue/html-self-closing -->
   <section>
+    <ProgressBar
+      :step="1"
+      :progress="10" />
     <h1>Before you begin</h1>
     <form>
       <h2>Are you filling out this form for yourself or someone else?</h2>
@@ -27,8 +30,7 @@
         <p class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
         <h2>Where are you filling out this form?</h2>
         <select
-          id="where"
-          v-model="where">
+          id="where">
           <option
             disabled
             value="">Please select one</option>
@@ -51,7 +53,12 @@
   </section>
 </template>
 <script>
+import ProgressBar from '~/components/ProgressBar.vue'
+
 export default {
+  components: {
+    ProgressBar
+  },
   data() {
     return {
       who: []

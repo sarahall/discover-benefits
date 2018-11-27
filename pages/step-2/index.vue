@@ -1,6 +1,8 @@
 <template>
   <!-- eslint-disable vue/html-self-closing -->
   <section>
+    <ProgressBar
+      :step="2" />
     <h1>About your residence</h1>
     <form>
       <div class="question">
@@ -56,7 +58,12 @@
 </template>
 
 <script>
+import ProgressBar from '~/components/ProgressBar.vue'
+
 export default {
+  components: {
+    ProgressBar
+  },
   data() {
     return {
       residence: ''

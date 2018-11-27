@@ -8,7 +8,7 @@ const appStore = () => {
         age: '',
         disability: '',
         grossIncome: '',
-        housing0tatus: '',
+        housing: '',
         numberInHousehold: '',
         marital: '',
         waterBill: '',
@@ -33,6 +33,10 @@ const appStore = () => {
       updateMarital(state, marital) {
         console.log(marital)
         state.form.marital = marital
+      },
+      updateWaterBill(state, waterBill) {
+        console.log(waterBill)
+        state.form.waterBill = waterBill
       },
       updateYearsLived(state, yearsLived) {
         console.log(yearsLived)

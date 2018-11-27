@@ -1,6 +1,8 @@
 <template>
   <!-- eslint-disable vue/html-self-closing -->
   <section>
+    <ProgressBar
+      :step="5" />
     <h1>About your household</h1>
     <p class="helper-text">
       Almost done! To finish, tell us a few details about your household.
@@ -58,6 +60,22 @@
       class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
   </section>
 </template>
+
+<script>
+import ProgressBar from '~/components/ProgressBar.vue'
+
+export default {
+  components: {
+    ProgressBar
+  },
+  data() {
+    return {
+      step: 5
+    }
+  }
+}
+</script>
+
 <style>
 #household-size {
   width: 4rem;
