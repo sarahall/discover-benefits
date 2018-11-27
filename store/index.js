@@ -8,9 +8,9 @@ const appStore = () => {
         age: '',
         disability: '',
         grossIncome: '',
-        housingStatus: '',
+        housing0tatus: '',
         numberInHousehold: '',
-        martialStatus: '',
+        marital: '',
         waterBill: '',
         yearsLived: '',
         zip: ''
@@ -26,13 +26,13 @@ const appStore = () => {
         console.log(disability)
         state.form.disability = disability
       },
-      updateHousingStatus(state, housingStatus) {
-        console.log(housingStatus)
-        state.form.housingStatus = housingStatus
+      updateHousing(state, housing) {
+        console.log(housing)
+        state.form.housing = housing
       },
-      updateMaritalStatus(state, martialStatus) {
-        console.log(martialStatus)
-        state.form.martialStatus = martialStatus
+      updateMarital(state, marital) {
+        console.log(marital)
+        state.form.marital = marital
       },
       updateYearsLived(state, yearsLived) {
         console.log(yearsLived)

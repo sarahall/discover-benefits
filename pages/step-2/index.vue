@@ -24,7 +24,9 @@
           for="elsewhere">No</label>
       </div>
 
-      <div v-if="residence == 'philly'">
+      <div
+        v-if="residence == 'philly'"
+        class="question">
         <label
           for="zip-code"><h2>What is the ZIP code of your primary residence?</h2></label>
         <input

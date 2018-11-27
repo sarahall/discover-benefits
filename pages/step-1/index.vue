@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable vue/html-self-closing -->
   <section>
-    <h1>Page title</h1>
+    <h1>Before you begin</h1>
     <form>
       <h2>Are you filling out this form for yourself or someone else?</h2>
       <input
@@ -22,12 +22,23 @@
         required="required">
       <label
         for="someone">I’m helping someone fill it out for their household.</label>
+      <div
+        v-if="who == 'someone'">
+        <p class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
+        <h2>Where are you filling out this form?</h2>
+        <select
+          id="where"
+          v-model="where">
+          <option
+            disabled
+            value="">Please select one</option>
+          <option>Home</option>
+          <option>The Starship Enterprise</option>
+          <option>Other</option>
+        </select>
+      </div>
+
     </form>
-    <div
-      v-if="who == 'someone'"
-      class="helper-text">
-      Since you’re helping someone, make sure to answer the questions from their point of view.
-    </div>
 
     <nuxt-link
       :class="{ disabled: who == '' }"
@@ -53,3 +64,8 @@ export default {
   }
 }
 </script>
+<style>
+#where {
+  width: 15rem;
+}
+</style>

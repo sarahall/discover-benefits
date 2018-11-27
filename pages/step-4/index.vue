@@ -10,25 +10,25 @@
       <h2>Do you rent or own the place where you live?</h2>
       <input
         id="rent"
-        v-model="housingStatus"
+        v-model="housing"
         type="radio"
-        name="housing-status"
+        name="housing"
         value="rent">
       <label
         for="rent">I rent it.</label><br>
       <input
         id="own"
-        v-model="housingStatus"
+        v-model="housing"
         type="radio"
-        name="housing-status"
+        name="housing"
         value="own">
       <label
         for="own">I own it.</label><br>
       <input
         id="neither"
-        v-model="housingStatus"
+        v-model="housing"
         type="radio"
-        name="housing-status"
+        name="housing"
         value="neither">
       <label
         for="neither">I do not rent or own.</label>
@@ -40,7 +40,7 @@
       <input
         id="years-lived"
         v-model.number="yearsLived"
-        name="years-lived"
+        name="yearsLived"
         type="number"
         min="1"
         max="100">
@@ -65,7 +65,7 @@
     </div>
 
     <nuxt-link
-      :class="{ disabled: (housingStatus === '') }"
+      :class="{ disabled: (housing === '') }"
       class="button"
       to="/step-5">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -77,13 +77,13 @@
 <script>
 export default {
   computed: {
-    housingStatus: {
+    housing: {
       get() {
-        return this.$store.state.form.housingStatus
+        return this.$store.state.form.housing
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateHousingStatus', value)
+        this.$store.commit('updateHousing', value)
       }
     },
     yearsLived: {
@@ -97,8 +97,8 @@ export default {
     }
   },
   methods: {
-    updateHousingStatus(e) {
-      this.$store.commit('updateHousingStatus', e.target.value)
+    updatehousing(e) {
+      this.$store.commit('updatehousing', e.target.value)
     }
   }
 }

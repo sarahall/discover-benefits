@@ -32,7 +32,22 @@
         type="number">
     </div>
     <div class="question">
-      <h2>Question on frequency of income</h2>
+      <h2>How often do you receive the income you entered?</h2>
+      <select
+        id="frequency"
+        v-model="frequency">
+        <option
+          disabled
+          value="">Please select one</option>
+        <option>Every week</option>
+        <option>Every two weeks</option>
+        <option>Every month</option>
+        <option>Every year</option>
+      </select>
+    </div>
+
+    <div class="add-more">
+      <a>+ Add another person's income</a>
     </div>
 
     <nuxt-link
@@ -48,6 +63,9 @@
   width: 4rem;
 }
 #household-income {
-  width: 10rem;
+  width: 20rem;
+}
+#frequency {
+  width: 20rem;
 }
 </style>

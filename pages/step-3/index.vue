@@ -5,119 +5,115 @@
     <p class="helper-text">
       To begin, tell us a little about yourself.
     </p>
-    <form>
-      <div class="question">
-        <label
-          for="age"><h2>How old are you?</h2></label>
-        <input
-          id="age"
-          v-model.number="age"
-          name="age"
-          type="number"
-          min="18"
-          max="100">
-      </div>
+    <div class="question">
+      <label
+        for="age"><h2>How old are you?</h2></label>
+      <input
+        id="age"
+        v-model.number="age"
+        name="age"
+        type="number"
+        min="18"
+        max="100">
+    </div>
+    {{ age }}
+    <div class="question">
+      <h2>What is your marital status?</h2>
+      <input
+        id="single"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="single">
+      <label
+        for="single">I've never been married.</label><br>
+      <input
+        id="married"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="married">
+      <label
+        for="married">I’m married.</label><br>
+      <input
+        id="divorced"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="divorced">
+      <label
+        for="divorced">I’m divorced.</label><br>
+      <input
+        id="widowed"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="widowed">
+      <label
+        for="widowed">I’m widowed.</label>
+    </div>
+    <div
+      v-if="marital === 'married'"
+      class="question">
+      <h3>Is your spouse 65 or older?</h3>
+      <input
+        id="spouse-over-65"
+        type="radio"
+        name="spouse-age"
+        value="spouse-over-65">
+      <label
+        for="spouse-over-65">Yes</label><br>
+      <input
+        id="spouse-under-65"
+        type="radio"
+        name="spouse-age"
+        value="spouse-under-65">
+      <label
+        for="spouse-under-65">No</label>
+    </div>
 
-      <div class="question">
-        <h2>What is your marital status?</h2>
-        <input
-          id="single"
-          v-model="maritalStatus"
-          type="radio"
-          name="marital-status"
-          value="single">
-        <label
-          for="single">I've never been married.</label><br>
-        <input
-          id="married"
-          v-model="maritalStatus"
-          type="radio"
-          name="marital-status"
-          value="married">
-        <label
-          for="married">I’m married.</label><br>
-        <input
-          id="divorced"
-          v-model="maritalStatus"
-          type="radio"
-          name="marital-status"
-          value="divorced">
-        <label
-          for="divorced">I’m divorced.</label><br>
-        <input
-          id="widowed"
-          v-model="maritalStatus"
-          type="radio"
-          name="marital-status"
-          value="widowed">
-        <label
-          for="widowed">I’m widowed.</label>
-      </div>
+    <div
+      v-if="marital === 'widowed'"
+      class="question">
+      <h3>Was your spouse 65 or older when they passed away?</h3>
+      <input
+        id="widowed-over-65"
+        type="radio"
+        name="widowed-age"
+        value="widowed-over-65">
+      <label
+        for="widowed-over-65">Yes</label><br>
+      <input
+        id="widowed-under-65"
+        type="radio"
+        name="widowed-age"
+        value="widowed-under-65">
+      <label
+        for="widowed-under-65">No</label>
+    </div>
 
-      <div
-        v-if="maritalStatus === 'married'"
-        class="question">
-        <h3>Is your spouse 65 or older?</h3>
-        <input
-          id="spouse-over-65"
-          type="radio"
-          name="spouse-age"
-          value="spouse-over-65">
-        <label
-          for="spouse-over-65">Yes</label><br>
-        <input
-          id="spouse-under-65"
-          type="radio"
-          name="spouse-age"
-          value="spouse-under-65">
-        <label
-          for="spouse-under-65">No</label>
-      </div>
-
-      <div
-        v-if="maritalStatus === 'widowed'"
-        class="question">
-        <h3>Was your spouse 65 or older when they passed away?</h3>
-        <input
-          id="widowed-over-65"
-          type="radio"
-          name="widowed-age"
-          value="widowed-over-65">
-        <label
-          for="widowed-over-65">Yes</label><br>
-        <input
-          id="widowed-under-65"
-          type="radio"
-          name="widowed-age"
-          value="widowed-under-65">
-        <label
-          for="widowed-under-65">No</label>
-      </div>
-
-      <div class="question">
-        <h2>Does anyone in your household have a physical disability?</h2>
-        <input
-          id="disabled"
-          v-model="disability"
-          type="radio"
-          name="disability"
-          value="yes">
-        <label
-          for="disabled">Yes</label><br>
-        <input
-          id="not-disabled"
-          v-model="disability"
-          type="radio"
-          name="disability"
-          value="no">
-        <label
-          for="not-disabled">No</label>
-      </div>
-
-    </form>
+    <div class="question">
+      <h2>Does anyone in your household have a physical disability?</h2>
+      <input
+        id="disabled"
+        v-model="disability"
+        type="radio"
+        name="disability"
+        value="disabled">
+      <label
+        for="disabled">Yes</label><br>
+      <input
+        id="not-disabled"
+        v-model="disability"
+        type="radio"
+        name="disability"
+        value="not-disabled">
+      <label
+        for="not-disabled">No</label>
+    </div>
 
     <nuxt-link
-      :class="{ disabled: (age === '') || (maritalStatus === '') || (disability === '') }"
+      :class="isDisabled"
       class="button"
       to="/step-4">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -130,10 +126,16 @@
 export default {
   data() {
     return {
-      //maritalStatus: []
+      //marital: []
+      disabled: true
     }
   },
   computed: {
+    isDisabled() {
+      return {
+        disabled: this.age === '' || this.marital === '' || this.disabled === ''
+      }
+    },
     age: {
       get() {
         return this.$store.state.form.age
@@ -142,12 +144,12 @@ export default {
         this.$store.commit('updateAge', value)
       }
     },
-    maritalStatus: {
+    marital: {
       get() {
-        return this.$store.state.form.maritalStatus
+        return this.$store.state.form.marital
       },
       set(value) {
-        this.$store.commit('updateMaritalStatus', value)
+        this.$store.commit('updateMarital', value)
       }
     },
     disability: {
@@ -159,14 +161,7 @@ export default {
       }
     }
   },
-  methods: {
-    // updateAge(e) {
-    //   this.$store.commit('updateAge', e.target.value)
-    // },
-    updateMaritalStatus(e) {
-      this.$store.commit('updateMaritalStatus', e.target.value)
-    }
-  }
+  methods: {}
 }
 </script>
 
