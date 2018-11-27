@@ -2,8 +2,7 @@
   <!-- eslint-disable vue/html-self-closing -->
   <section>
     <ProgressBar
-      :step="1"
-      :progress="10" />
+      :step="1"/>
     <h1>Before you begin</h1>
     <form>
       <h2>Are you filling out this form for yourself or someone else?</h2>
@@ -30,7 +29,8 @@
         <p class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
         <h2>Where are you filling out this form?</h2>
         <select
-          id="where">
+          id="where"
+          v-model="where">
           <option
             disabled
             value="">Please select one</option>
@@ -59,14 +59,22 @@ export default {
   components: {
     ProgressBar
   },
-  data() {
-    return {
-      who: []
-    }
-  },
-  methods: {
-    submit() {
-      this.data.push(this.who)
+  computed: {
+    who: {
+      get() {
+        return this.$store.state.form.who
+      },
+      set(value) {
+        this.$store.commit('updateWho', value)
+      }
+    },
+    where: {
+      get() {
+        return this.$store.state.form.where
+      },
+      set(value) {
+        this.$store.commit('updateWhere', value)
+      }
     }
   }
 }

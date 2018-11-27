@@ -7,11 +7,15 @@ const appStore = () => {
       form: {
         age: '',
         disability: '',
+        frequency: '',
         grossIncome: '',
         housing: '',
-        numberInHousehold: '',
+        householdSize: '',
         marital: '',
+        residence: '',
         waterBill: '',
+        where: '',
+        who: '',
         yearsLived: '',
         zip: ''
       }
@@ -26,13 +30,34 @@ const appStore = () => {
         console.log(disability)
         state.form.disability = disability
       },
+      updateFrequency(state, frequency) {
+        console.log(frequency)
+        state.form.frequency = frequency
+      },
+      updateGrossIncome(state, grossIncome) {
+        console.log(grossIncome)
+        state.form.grossIncome = grossIncome
+      },
       updateHousing(state, housing) {
         console.log(housing)
         state.form.housing = housing
       },
+      updateHouseholdSize(state, householdSize) {
+        console.log(householdSize)
+        state.form.householdSize = householdSize
+      },
       updateMarital(state, marital) {
         console.log(marital)
         state.form.marital = marital
+      },
+      updateResidence(state, residence) {
+        state.form.residence = residence
+      },
+      updateWhere(state, where) {
+        state.form.where = where
+      },
+      updateWho(state, who) {
+        state.form.who = who
       },
       updateWaterBill(state, waterBill) {
         console.log(waterBill)

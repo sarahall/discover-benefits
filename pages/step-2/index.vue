@@ -64,12 +64,16 @@ export default {
   components: {
     ProgressBar
   },
-  data() {
-    return {
-      residence: ''
-    }
-  },
   computed: {
+    residence: {
+      get() {
+        return this.$store.state.form.residence
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateResidence', value)
+      }
+    },
     zip: {
       get() {
         return this.$store.state.form.zip

@@ -12,7 +12,9 @@
       <p class="helper-text">
         Include both adults and children in your count.
       </p>
-      <select id="household-size">
+      <select
+        id="household-size"
+        v-model="householdSize">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -30,7 +32,8 @@
       </p>
       <input
         id="household-income"
-        name="household-income"
+        v-model="grossIncome"
+        name="grossIncome"
         type="number">
     </div>
     <div class="question">
@@ -54,7 +57,7 @@
 
     <nuxt-link
       class="button"
-      to="/review">Next <i class="far fa-arrow-right"></i></nuxt-link>
+      to="/review">Finish <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-4"
       class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
@@ -71,6 +74,43 @@ export default {
   data() {
     return {
       step: 5
+    }
+  },
+  computed: {
+    isDisabled() {
+      return {
+        disabled:
+          this.householdSize === '' ||
+          this.grossIncome === '' ||
+          this.frequency === ''
+      }
+    },
+    householdSize: {
+      get() {
+        return this.$store.state.form.householdSize
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateHouseholdSize', value)
+      }
+    },
+    grossIncome: {
+      get() {
+        return this.$store.state.form.grossIncome
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateGrossIncome', value)
+      }
+    },
+    frequency: {
+      get() {
+        return this.$store.state.form.frequency
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateFrequency', value)
+      }
     }
   }
 }

@@ -18,7 +18,6 @@
         min="18"
         max="100">
     </div>
-    {{ age }}
     <div class="question">
       <h2>What is your marital status?</h2>
       <input
@@ -54,7 +53,6 @@
       <label
         for="widowed">I’m widowed.</label>
     </div>
-    {{ marital }}
     <div
       v-if="marital === 'married'"
       class="question">
@@ -114,7 +112,6 @@
       <label
         for="not-disabled">No</label>
     </div>
-    {{ disability }}
     <nuxt-link
       :class="isDisabled"
       class="button"

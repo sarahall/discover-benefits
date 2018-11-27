@@ -35,7 +35,6 @@
       <label
         for="neither">I do not rent or own.</label>
     </div>
-    {{ housing }}
 
     <div class="question">
       <label
