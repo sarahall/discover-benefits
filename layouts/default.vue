@@ -7,12 +7,12 @@
       crossorigin="anonymous">
 
     <div class="fixed-head">
-      <philaAppHeader
+      <philaHeader
         app-title="OneFormPhilly"/>
-      <philaAppSubHeader />
+      <philaSubHeader />
     </div>
     <main class="content">
-      <div class="grid-container">
+      <div class="grid-container pbl">
         <div class="grid-x">
           <section class="cell">
             <nuxt/>
@@ -21,29 +21,30 @@
       </div>
     </main>
 
-    <philaAppFooter
+    <philaFooter
       feedback-link="https://www.phila.gov/feedback/"/>
   </div>
 </template>
 
 <script>
-import PhilaAppHeader from '~/components/PhilaAppHeader.vue'
-import PhilaAppSubHeader from '~/components/PhilaAppSubHeader.vue'
-import PhilaAppFooter from '~/components/PhilaAppFooter.vue'
+import PhilaHeader from '~/components/PhilaHeader.vue'
+import PhilaSubHeader from '~/components/PhilaSubHeader.vue'
+import PhilaFooter from '~/components/PhilaFooter.vue'
 import ProgressBar from '~/components/ProgressBar.vue'
 
 export default {
   components: {
-    PhilaAppHeader,
-    PhilaAppSubHeader,
-    PhilaAppFooter,
+    PhilaHeader,
+    PhilaSubHeader,
+    PhilaFooter,
     ProgressBar
   }
 }
 </script>
 
 <style>
-@import '../node_modules/phila-app-css/dist/css/phila-app.min.css';
+@import '../node_modules/@cityofphiladelphia/phila-app-css/dist/css/phila-app.min.css';
+
 .fixed-head {
   position: fixed;
   top: 0;
@@ -52,6 +53,7 @@ export default {
 }
 main {
   height: calc(100vh - 110px - 36px);
+  margin-bottom: 4rem;
   position: relative;
   overflow: scroll;
   top: 110px;

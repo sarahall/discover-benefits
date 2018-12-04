@@ -1,50 +1,119 @@
 <template>
-  <!-- eslint-disable vue/html-self-closing -->
   <section>
     <ProgressBar
       :step="1"/>
     <h1>Before you begin</h1>
     <form>
-      <h2>Are you filling out this form for yourself or someone else?</h2>
-      <input
-        id="myself"
-        v-model="who"
-        type="radio"
-        name="who"
-        value="myself"
-        required="required">
-      <label
-        for="myself">I’m filling it out for my household.</label><br>
-      <input
-        id="someone"
-        v-model="who"
-        type="radio"
-        name="who"
-        value="someone"
-        required="required">
-      <label
-        for="someone">I’m helping someone fill it out for their household.</label>
-      <div
-        v-if="who == 'someone'">
-        <p class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
-        <h2>Where are you filling out this form?</h2>
-        <select
-          id="where"
-          v-model="where">
-          <option
-            disabled
-            value="">Please select one</option>
-          <option>Home</option>
-          <option>The Starship Enterprise</option>
-          <option>Other</option>
-        </select>
+      <div class="question">
+        <h2>Is your primary residence in the City of Philadelphia?</h2>
+        <p class="helper-text">Your primary residence is the place where you usually live. If you receive your mail at a place or use its address for your taxes or IDs, it’s likely your primary residence.</p>
+        <input
+          id="philly"
+          v-model="residence"
+          type="radio"
+          name="residence"
+          value="philly"
+          required="required">
+        <label
+          for="philly">Yes</label><br>
+        <input
+          id="elsewhere"
+          v-model="residence"
+          type="radio"
+          name="residence"
+          value="elsewhere"
+          required="required">
+        <label
+          for="elsewhere">No</label>
       </div>
 
+      <div
+        v-if="residence == 'philly'"
+        class="question">
+        <label
+          for="zip-code"><h2>What is the ZIP code of your primary residence?</h2></label>
+        <input
+          id="zip-code"
+          v-model.number="zip"
+          name="zip-code"
+          type="number"
+          min="19019"
+          max="19255"
+          required="required"><!--TODO: actually validate zip code -->
+      </div>
+
+      <div v-if="residence == 'elsewhere'">
+        <p class="error mtm">
+          Because your primary residence is located outside of the City of Philadelphia, you don’t qualify for the programs included in One Form Philly.
+        </p>
+      </div>
+
+      <div
+        v-if="residence == 'philly'"
+        class="question">
+        <h2>Are you filling out this form for yourself or someone else?</h2>
+        <input
+          id="myself"
+          v-model="who"
+          type="radio"
+          name="who"
+          value="myself"
+          required="required"
+          @click="notDisabled">
+        <label
+          for="myself">I’m filling it out for my household.</label><br>
+        <input
+          id="someone"
+          v-model="who"
+          type="radio"
+          name="who"
+          value="someone"
+          required="required"
+          @click="isDisabled">
+        <label
+          for="someone">I’m helping someone fill it out for their household.</label>
+        <p
+          v-if="who == 'someone'"
+          class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
+        <div
+          v-if="who == 'someone'"
+          class="question">
+          <label
+            for="where"><h2>Where are you filling out this form?</h2></label>
+          <p class="helper-text">You might answer “at home,” “at the library,” “at a KEYSPOT,” or wherever you might be. By understanding where people use One Form Philly, we can make it better.</p>
+          <select
+            id="where"
+            v-model="where"
+            @focus="checkField"
+            @blur="checkField">
+            <option
+              disabled
+              value="">Please select one</option>
+            <option>At home</option>
+            <option>Other</option>
+          </select>
+          <label
+            for="where-other"
+            class="accessible">Other: </label>
+          <input
+            v-if="where === 'Other'"
+            id="where-other"
+            v-model="other"
+            name="other"
+            type="text">
+          <div
+            v-if="errors.length"
+            class="error-message">
+            This field is required.
+          </div>
+        </div>
+      </div>
     </form>
 
     <nuxt-link
-      :class="{ disabled: who == '' }"
+      :class="isDisabled"
       class="button"
+
       to="/step-2"
       @click="submit()">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -59,7 +128,36 @@ export default {
   components: {
     ProgressBar
   },
+  data() {
+    return {
+      disabled: true,
+      errors: []
+    }
+  },
   computed: {
+    isDisabled() {
+      return {
+        disabled: this.disabled,
+      }
+    },
+    residence: {
+      get() {
+        return this.$store.state.form.residence
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateResidence', value)
+      }
+    },
+    zip: {
+      get() {
+        return this.$store.state.form.zip
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateZip', value)
+      }
+    },
     who: {
       get() {
         return this.$store.state.form.who
@@ -75,6 +173,38 @@ export default {
       set(value) {
         this.$store.commit('updateWhere', value)
       }
+    },
+    other: {
+      get() {
+        return this.$store.state.form.other
+      },
+      set(value) {
+        this.$store.commit('updateOther', value)
+      }
+    }
+  },
+  methods: {
+    notDisabled() {
+      this.disabled = false
+    },
+    submit() {
+      this.$router.push('/step-2')
+    },
+    updateZip(e) {
+      this.$store.commit('updateZip', e.target.value)
+    },
+    checkField(e) {
+      if (this.where != '') {
+        console.log(this.where)
+        return true
+      }
+      this.errors = []
+
+      if (!this.where) {
+        console.log(this.where)
+
+        this.errors.push('Location required.' + "kjsk")
+      }
     }
   }
 }
@@ -82,5 +212,13 @@ export default {
 <style>
 #where {
   width: 15rem;
+}
+#where-other {
+  width: 20rem;
+  display: inline-block;
+  margin-left: 1rem;
+}
+#zip-code {
+  width: 7rem;
 }
 </style>

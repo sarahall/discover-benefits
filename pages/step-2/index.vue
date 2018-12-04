@@ -1,54 +1,122 @@
 <template>
-  <!-- eslint-disable vue/html-self-closing -->
   <section>
     <ProgressBar
       :step="2" />
-    <h1>About your residence</h1>
-    <form>
-      <div class="question">
-        <h2>Is your primary residence in the City of Philadelphia?</h2>
-        <p class="helper-text">Your primary residence is the place where you usually live. If you receive your mail at a place or use its address for your taxes or IDs, it’s likely your primary residence.</p>
-        <input
-          id="philly"
-          v-model="residence"
-          type="radio"
-          name="residence"
-          value="philly">
-        <label
-          for="philly">Yes</label><br>
-        <input
-          id="elsewhere"
-          v-model="residence"
-          type="radio"
-          name="residence"
-          value="elsewhere">
-        <label
-          for="elsewhere">No</label>
-      </div>
+    <h1>About you</h1>
+    <p class="helper-text">
+      Tell us a little about yourself.
+    </p>
+    <div class="question">
+      <label
+        for="age"><h2>How old are you?</h2></label>
+      <input
+        id="age"
+        v-model.number="age"
+        name="age"
+        type="number"
+        min="18"
+        max="100">
+    </div>
+    <div class="question">
+      <h2>What is your marital status?</h2>
+      <input
+        id="single"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="single">
+      <label
+        for="single">I've never been married.</label><br>
+      <input
+        id="married"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="married">
+      <label
+        for="married">I’m married.</label><br>
+      <input
+        id="divorced"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="divorced">
+      <label
+        for="divorced">I’m divorced.</label><br>
+      <input
+        id="widowed"
+        v-model="marital"
+        type="radio"
+        name="marital"
+        value="widowed">
+      <label
+        for="widowed">I’m widowed.</label>
+    </div>
+    <div
+      v-if="marital === 'married'"
+      class="question">
+      <h3>Is your spouse 65 or older?</h3>
+      <input
+        id="spouse-over-65"
+        v-model="spouseAge"
+        type="radio"
+        name="spouseAge"
+        value="spouse-over-65">
+      <label
+        for="spouse-over-65">Yes</label><br>
+      <input
+        id="spouse-under-65"
+        v-model="spouseAge"
+        type="radio"
+        name="spouseAge"
+        value="spouse-under-65">
+      <label
+        for="spouse-under-65">No</label>
+    </div>
 
-      <div
-        v-if="residence == 'philly'"
-        class="question">
-        <label
-          for="zip-code"><h2>What is the ZIP code of your primary residence?</h2></label>
-        <input
-          id="zip-code"
-          v-model.number="zip"
-          name="zip-code"
-          type="number"
-          min="19019"
-          max="19255"><!--TODO: actually validate zip code -->
-      </div>
+    <div
+      v-if="marital === 'widowed'"
+      class="question">
+      <h3>Was your spouse 65 or older when they passed away?</h3>
+      <input
+        id="widowed-over-65"
+        v-model="widowedAge"
+        type="radio"
+        name="widowedAge"
+        value="widowed-over-65">
+      <label
+        for="widowed-over-65">Yes</label><br>
+      <input
+        id="widowed-under-65"
+        v-model="widowedAge"
+        type="radio"
+        name="widowed-age"
+        value="widowed-under-65">
+      <label
+        for="widowed-under-65">No</label>
+    </div>
 
-      <div v-if="residence == 'elsewhere'">
-        <p class="error">
-          Because your primary residence is located outside of the City of Philadelphia, you don’t qualify for the programs included in One Form Philly.
-        </p>
-      </div>
-    </form>
-
+    <div class="question">
+      <h2>Does anyone in your household have a physical disability?</h2>
+      <input
+        id="disabled"
+        v-model="disability"
+        type="radio"
+        name="disability"
+        value="disabled">
+      <label
+        for="disabled">Yes</label><br>
+      <input
+        id="not-disabled"
+        v-model="disability"
+        type="radio"
+        name="disability"
+        value="not-disabled">
+      <label
+        for="not-disabled">No</label>
+    </div>
     <nuxt-link
-      :class="{ disabled: zip == '' }"
+      :class="isDisabled"
       class="button"
       to="/step-3">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -64,35 +132,65 @@ export default {
   components: {
     ProgressBar
   },
+  data() {
+    return {
+      //marital: []
+      disabled: true
+    }
+  },
   computed: {
-    residence: {
-      get() {
-        return this.$store.state.form.residence
-      },
-      set(value) {
-        console.log(value)
-        this.$store.commit('updateResidence', value)
+    isDisabled() {
+      return {
+        disabled: this.age === '' || this.marital === '' || this.disabled === ''
       }
     },
-    zip: {
+    age: {
       get() {
-        return this.$store.state.form.zip
+        return this.$store.state.form.age
       },
       set(value) {
-        console.log(value)
-        this.$store.commit('updateZip', value)
+        this.$store.commit('updateAge', value)
+      }
+    },
+    marital: {
+      get() {
+        return this.$store.state.form.marital
+      },
+      set(value) {
+        this.$store.commit('updateMarital', value)
+      }
+    },
+    disability: {
+      get() {
+        return this.$store.state.form.disability
+      },
+      set(value) {
+        this.$store.commit('updateDisability', value)
+      }
+    },
+    spouseAge: {
+      get() {
+        return this.$store.state.form.spouseAge
+      },
+      set(value) {
+        this.$store.commit('updateSpouseAge', value)
+      }
+    },
+    widowedAge: {
+      get() {
+        return this.$store.state.form.widowedAge
+      },
+      set(value) {
+        this.$store.commit('updateWidowedAge', value)
       }
     }
   },
-  methods: {
-    updateZip(e) {
-      this.$store.commit('updateZip', e.target.value)
-    }
-  }
+  methods: {}
 }
 </script>
+
 <style>
-#zip-code {
-  width: 7rem;
+#age {
+  width: 5rem;
 }
 </style>

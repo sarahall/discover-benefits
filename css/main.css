@@ -30,6 +30,16 @@ a.disabled {
 .question {
   margin-top: 3rem;
 }
-main .question:first-of-type {
-  margin-top: 0;
+
+button.disabled,
+button.disabled:hover,
+button.disabled:focus,
+button[disabled],
+button[disabled]:hover,
+button[disabled]:focus {
+  background-color: #25cef7;
+  color: white;
+  pointer-events: none;
+  opacity: 0.25;
+  cursor: not-allowed;
 }

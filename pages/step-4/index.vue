@@ -1,77 +1,62 @@
 <template>
-  <!-- eslint-disable vue/html-self-closing -->
   <section>
     <ProgressBar
       :step="4" />
-    <h1>About your home</h1>
+    <h1>About your household</h1>
     <p class="helper-text">
-      Now, let’s learn more about the place where you live.
+      Almost done! To finish, tell us a few details about your household.
     </p>
-
     <div class="question">
-      <h2>Do you rent or own the place where you live?</h2>
+      <label for="household-size"><h2>How many people are in your household?</h2></label>
+      <p class="helper-text">
+        Include both adults and children in your count.
+      </p>
+      <select
+        id="household-size"
+        v-model="householdSize">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8+</option>
+      </select>
+    </div>
+    <div class="question">
+      <label for="household-income"><h2>What is your household’s gross income?</h2></label>
+      <p class="helper-text">
+        Your gross income is the total amount of money you earn before taxes. You can provide an estimate.
+      </p>
       <input
-        id="rent"
-        v-model="housing"
-        type="radio"
-        name="housing"
-        value="rent">
-      <label
-        for="rent">I rent it.</label><br>
-      <input
-        id="own"
-        v-model="housing"
-        type="radio"
-        name="housing"
-        value="own">
-      <label
-        for="own">I own it.</label><br>
-      <input
-        id="neither"
-        v-model="housing"
-        type="radio"
-        name="housing"
-        value="neither">
-      <label
-        for="neither">I do not rent or own.</label>
+        id="household-income"
+        v-model="grossIncome"
+        name="grossIncome"
+        type="number">
+    </div>
+    <div class="question">
+      <h2>How often do you receive the income you entered?</h2>
+      <select
+        id="frequency"
+        v-model="frequency">
+        <option
+          disabled
+          value="">Please select one</option>
+        <option>Every week</option>
+        <option>Every 2 weeks</option>
+        <option>Every month</option>
+        <option>Every year</option>
+      </select>
     </div>
 
-    <div class="question">
-      <label
-        for="years-lived"><h2>How many years have you lived in your primary residence?</h2></label>
-      <input
-        id="years-lived"
-        v-model.number="yearsLived"
-        name="yearsLived"
-        type="number"
-        min="1"
-        max="100">
-    </div>
-
-    <div class="question">
-      <h2>Are you up to date on your water bill?</h2>
-      <input
-        id="water-bill-paid"
-        v-model="waterBill"
-        type="radio"
-        name="waterBill"
-        value="paid">
-      <label
-        for="water-bill-paid">Yes</label><br>
-      <input
-        id="water-bill-unpaid"
-        v-model="waterBill"
-        type="radio"
-        name="waterBill"
-        value="unpaid">
-      <label
-        for="water-bill-unpaid">No</label>
+    <div class="add-more">
+      <a>+ Add another person's income</a>
     </div>
 
     <nuxt-link
-      :class="isDisabled"
       class="button"
-      to="/step-5">Next <i class="far fa-arrow-right"></i></nuxt-link>
+      to="/review">Finish <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-3"
       class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
@@ -85,38 +70,45 @@ export default {
   components: {
     ProgressBar
   },
+  data() {
+    return {
+      step: 5
+    }
+  },
   computed: {
     isDisabled() {
       return {
         disabled:
-          this.housing === '' || this.yearsLived === '' || this.waterBill === ''
+          this.householdSize === '' ||
+          this.grossIncome === '' ||
+          this.frequency === ''
       }
     },
-    housing: {
+    householdSize: {
       get() {
-        return this.$store.state.form.housing
+        return this.$store.state.form.householdSize
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateHousing', value)
+        this.$store.commit('updateHouseholdSize', value)
       }
     },
-    yearsLived: {
+    grossIncome: {
       get() {
-        return this.$store.state.form.yearsLived
+        return this.$store.state.form.grossIncome
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateYearsLived', value)
+        this.$store.commit('updateGrossIncome', value)
       }
     },
-    waterBill: {
+    frequency: {
       get() {
-        return this.$store.state.form.waterBill
+        return this.$store.state.form.frequency
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateWaterBill', value)
+        this.$store.commit('updateFrequency', value)
       }
     }
   }
@@ -124,7 +116,13 @@ export default {
 </script>
 
 <style>
-#years-lived {
-  width: 5rem;
+#household-size {
+  width: 4rem;
+}
+#household-income {
+  width: 20rem;
+}
+#frequency {
+  width: 20rem;
 }
 </style>

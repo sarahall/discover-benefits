@@ -1,117 +1,157 @@
 <template>
-  <!-- eslint-disable vue/html-self-closing -->
   <section>
     <ProgressBar
       :step="3" />
-    <h1>About you</h1>
+    <h1>About your home</h1>
     <p class="helper-text">
-      To begin, tell us a little about yourself.
+      Now, let’s learn more about the place where you live.
     </p>
+
+    <div class="question">
+      <h2>Do you rent or own the place where you live?</h2>
+      <input
+        id="rent"
+        v-model="housing"
+        type="radio"
+        name="housing"
+        value="rent">
+      <label
+        for="rent">I rent it.</label><br>
+      <input
+        id="own"
+        v-model="housing"
+        type="radio"
+        name="housing"
+        value="own">
+      <label
+        for="own">I own it.</label><br>
+      <input
+        id="neither"
+        v-model="housing"
+        type="radio"
+        name="housing"
+        value="neither">
+      <label
+        for="neither">I do not rent or own.</label>
+    </div>
+
+    <div v-if="housing === 'own'">
+
+      <div class="question">
+        <h2>Is it a single family home?</h2>
+        <input
+          id="single-family"
+          v-model="singleFamily"
+          type="radio"
+          name="singleFamily"
+          value="yes-single-family">
+        <label
+          for="single-family">Yes</label><br>
+        <input
+          id="not-single-family"
+          v-model="singleFamily"
+          type="radio"
+          name="singleFamily"
+          value="no-single-family">
+        <label
+          for="not-single-family">No</label><br>
+      </div>
+
+      <div class="question">
+        <h2>Is your name on the deed?</h2>
+        <input
+          id="name-on-deed"
+          v-model="deed"
+          type="radio"
+          name="deed"
+          value="yes-deed">
+        <label
+          for="name-on-deed">Yes</label><br>
+        <input
+          id="name-not-on-deed"
+          v-model="deed"
+          type="radio"
+          name="deed"
+          value="no-deed">
+        <label
+          for="name-not-on-deed">No</label><br>
+      </div>
+
+      <div class="question">
+        <h2>Do you own any other properties?</h2>
+        <input
+          id="more-properties"
+          v-model="properties"
+          type="radio"
+          name="properties"
+          value="yes">
+        <label
+          for="more-properties">Yes</label><br>
+        <input
+          id="no-more-properties"
+          v-model="properties"
+          type="radio"
+          name="properties"
+          value="no">
+        <label
+          for="no-more-properties">No</label><br>
+      </div>
+    </div>
+
+    <div
+      v-if="housing === 'rent'"
+      class="question">
+      <h2>Is your name on the lease?</h2>
+      <input
+        id="lease"
+        v-model="lease"
+        type="radio"
+        name="lease"
+        value="yes">
+      <label
+        for="lease">Yes</label><br>
+      <input
+        id="no-lease"
+        v-model="lease"
+        type="radio"
+        name="lease"
+        value="no">
+      <label
+        for="no-lease">No</label><br>
+    </div>
+
     <div class="question">
       <label
-        for="age"><h2>How old are you?</h2></label>
+        for="years-lived"><h2>How many years have you lived in your primary residence?</h2></label>
       <input
-        id="age"
-        v-model.number="age"
-        name="age"
+        id="years-lived"
+        v-model.number="yearsLived"
+        name="yearsLived"
         type="number"
-        min="18"
+        min="1"
         max="100">
     </div>
-    <div class="question">
-      <h2>What is your marital status?</h2>
-      <input
-        id="single"
-        v-model="marital"
-        type="radio"
-        name="marital"
-        value="single">
-      <label
-        for="single">I've never been married.</label><br>
-      <input
-        id="married"
-        v-model="marital"
-        type="radio"
-        name="marital"
-        value="married">
-      <label
-        for="married">I’m married.</label><br>
-      <input
-        id="divorced"
-        v-model="marital"
-        type="radio"
-        name="marital"
-        value="divorced">
-      <label
-        for="divorced">I’m divorced.</label><br>
-      <input
-        id="widowed"
-        v-model="marital"
-        type="radio"
-        name="marital"
-        value="widowed">
-      <label
-        for="widowed">I’m widowed.</label>
-    </div>
-    <div
-      v-if="marital === 'married'"
-      class="question">
-      <h3>Is your spouse 65 or older?</h3>
-      <input
-        id="spouse-over-65"
-        type="radio"
-        name="spouse-age"
-        value="spouse-over-65">
-      <label
-        for="spouse-over-65">Yes</label><br>
-      <input
-        id="spouse-under-65"
-        type="radio"
-        name="spouse-age"
-        value="spouse-under-65">
-      <label
-        for="spouse-under-65">No</label>
-    </div>
-
-    <div
-      v-if="marital === 'widowed'"
-      class="question">
-      <h3>Was your spouse 65 or older when they passed away?</h3>
-      <input
-        id="widowed-over-65"
-        type="radio"
-        name="widowed-age"
-        value="widowed-over-65">
-      <label
-        for="widowed-over-65">Yes</label><br>
-      <input
-        id="widowed-under-65"
-        type="radio"
-        name="widowed-age"
-        value="widowed-under-65">
-      <label
-        for="widowed-under-65">No</label>
-    </div>
 
     <div class="question">
-      <h2>Does anyone in your household have a physical disability?</h2>
+      <h2>Are you up to date on your water bill?</h2>
       <input
-        id="disabled"
-        v-model="disability"
+        id="water-bill-paid"
+        v-model="waterBill"
         type="radio"
-        name="disability"
-        value="disabled">
+        name="waterBill"
+        value="paid">
       <label
-        for="disabled">Yes</label><br>
+        for="water-bill-paid">Yes</label><br>
       <input
-        id="not-disabled"
-        v-model="disability"
+        id="water-bill-unpaid"
+        v-model="waterBill"
         type="radio"
-        name="disability"
-        value="not-disabled">
+        name="waterBill"
+        value="unpaid">
       <label
-        for="not-disabled">No</label>
+        for="water-bill-unpaid">No</label>
     </div>
+
     <nuxt-link
       :class="isDisabled"
       class="button"
@@ -129,49 +169,82 @@ export default {
   components: {
     ProgressBar
   },
-  data() {
-    return {
-      //marital: []
-      disabled: true
-    }
-  },
   computed: {
     isDisabled() {
       return {
-        disabled: this.age === '' || this.marital === '' || this.disabled === ''
+        disabled:
+          this.housing === '' || this.yearsLived === '' || this.waterBill === ''
       }
     },
-    age: {
+    housing: {
       get() {
-        return this.$store.state.form.age
+        return this.$store.state.form.housing
       },
       set(value) {
-        this.$store.commit('updateAge', value)
+        console.log(value)
+        this.$store.commit('updateHousing', value)
       }
     },
-    marital: {
+    deed: {
       get() {
-        return this.$store.state.form.marital
+        return this.$store.state.form.deed
       },
       set(value) {
-        this.$store.commit('updateMarital', value)
+        console.log(value)
+        this.$store.commit('updateDeed', value)
       }
     },
-    disability: {
+    lease: {
       get() {
-        return this.$store.state.form.disability
+        return this.$store.state.form.lease
       },
       set(value) {
-        this.$store.commit('updateDisability', value)
+        console.log(value)
+        this.$store.commit('updateLease', value)
+      }
+    },
+    properties: {
+      get() {
+        return this.$store.state.form.properties
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateProperties', value)
+      }
+    },
+    singleFamily: {
+      get() {
+        return this.$store.state.form.singleFamily
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateSingleFamily', value)
+      }
+    },
+    yearsLived: {
+      get() {
+        return this.$store.state.form.yearsLived
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateYearsLived', value)
+      }
+    },
+    waterBill: {
+      get() {
+        return this.$store.state.form.waterBill
+      },
+      set(value) {
+        console.log(value)
+        this.$store.commit('updateWaterBill', value)
       }
     }
-  },
-  methods: {}
+  }
 }
 </script>
 
 <style>
-#age {
+#years-lived {
   width: 5rem;
 }
 </style>
