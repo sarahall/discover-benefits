@@ -14,7 +14,7 @@
         v-model="housing"
         type="radio"
         name="housing"
-        value="rent">
+        value="Rent">
       <label
         for="rent">I rent it.</label><br>
       <input
@@ -22,7 +22,7 @@
         v-model="housing"
         type="radio"
         name="housing"
-        value="own">
+        value="Own">
       <label
         for="own">I own it.</label><br>
       <input
@@ -30,12 +30,12 @@
         v-model="housing"
         type="radio"
         name="housing"
-        value="neither">
+        value="Neither">
       <label
         for="neither">I do not rent or own.</label>
     </div>
 
-    <div v-if="housing === 'own'">
+    <div v-if="housing === 'Own'">
 
       <div class="question">
         <h2>Is it a single family home?</h2>
@@ -43,16 +43,16 @@
           id="single-family"
           v-model="singleFamily"
           type="radio"
-          name="singleFamily"
-          value="yes-single-family">
+          name="single-family"
+          value="Yes">
         <label
           for="single-family">Yes</label><br>
         <input
           id="not-single-family"
           v-model="singleFamily"
           type="radio"
-          name="singleFamily"
-          value="no-single-family">
+          name="single-family"
+          value="No">
         <label
           for="not-single-family">No</label><br>
       </div>
@@ -64,7 +64,7 @@
           v-model="deed"
           type="radio"
           name="deed"
-          value="yes-deed">
+          value="Yes">
         <label
           for="name-on-deed">Yes</label><br>
         <input
@@ -72,7 +72,7 @@
           v-model="deed"
           type="radio"
           name="deed"
-          value="no-deed">
+          value="No">
         <label
           for="name-not-on-deed">No</label><br>
       </div>
@@ -84,7 +84,7 @@
           v-model="properties"
           type="radio"
           name="properties"
-          value="yes">
+          value="Yes">
         <label
           for="more-properties">Yes</label><br>
         <input
@@ -92,14 +92,14 @@
           v-model="properties"
           type="radio"
           name="properties"
-          value="no">
+          value="No">
         <label
           for="no-more-properties">No</label><br>
       </div>
     </div>
 
     <div
-      v-if="housing === 'rent'"
+      v-if="housing === 'Rent'"
       class="question">
       <h2>Is your name on the lease?</h2>
       <input

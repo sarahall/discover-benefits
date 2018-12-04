@@ -12,7 +12,7 @@
           v-model="residence"
           type="radio"
           name="residence"
-          value="philly"
+          value="yes"
           required="required">
         <label
           for="philly">Yes</label><br>
@@ -21,7 +21,7 @@
           v-model="residence"
           type="radio"
           name="residence"
-          value="elsewhere"
+          value="no"
           required="required">
         <label
           for="elsewhere">No</label>
@@ -42,70 +42,70 @@
           required="required"><!--TODO: actually validate zip code -->
       </div>
 
-      <div v-if="residence == 'elsewhere'">
+      <div v-if="residence == 'no'">
         <p class="error mtm">
           Because your primary residence is located outside of the City of Philadelphia, you don’t qualify for the programs included in One Form Philly.
         </p>
       </div>
 
       <div
-        v-if="residence == 'philly'"
+        v-if="residence == 'yes'"
         class="question">
         <h2>Are you filling out this form for yourself or someone else?</h2>
+
         <input
           id="myself"
           v-model="who"
           type="radio"
           name="who"
-          value="myself"
+          value="Myself"
           required="required"
           @click="notDisabled">
-        <label
-          for="myself">I’m filling it out for my household.</label><br>
+
+        <label for="myself">I’m filling it out for my household.</label><br>
+
         <input
           id="someone"
           v-model="who"
           type="radio"
           name="who"
-          value="someone"
-          required="required"
-          @click="isDisabled">
-        <label
-          for="someone">I’m helping someone fill it out for their household.</label>
-        <p
-          v-if="who == 'someone'"
-          class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
-        <div
-          v-if="who == 'someone'"
-          class="question">
-          <label
-            for="where"><h2>Where are you filling out this form?</h2></label>
-          <p class="helper-text">You might answer “at home,” “at the library,” “at a KEYSPOT,” or wherever you might be. By understanding where people use One Form Philly, we can make it better.</p>
-          <select
-            id="where"
-            v-model="where"
-            @focus="checkField"
-            @blur="checkField">
-            <option
-              disabled
-              value="">Please select one</option>
-            <option>At home</option>
-            <option>Other</option>
-          </select>
-          <label
-            for="where-other"
-            class="accessible">Other: </label>
-          <input
-            v-if="where === 'Other'"
-            id="where-other"
-            v-model="other"
-            name="other"
-            type="text">
-          <div
-            v-if="errors.length"
-            class="error-message">
-            This field is required.
+          value="Someone else"
+          required="required">
+
+        <label for="someone">I’m helping someone fill it out for their household.</label>
+
+        <div v-if="who === 'Someone else'">
+          <p class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
+          <div class="question">
+            <label for="where"><h2>Where are you filling out this form?</h2></label>
+
+            <p class="helper-text">You might answer “at home,” “at the library,” “at a KEYSPOT,” or wherever you might be. By understanding where people use One Form Philly, we can make it better.</p>
+            <select
+              id="where"
+              v-model="where"
+              @blur="checkField"
+              @click="notDisabled">
+              <option
+                disabled
+                value="">Please select one</option>
+              <option>At home</option>
+              <option>Other</option>
+            </select>
+            <label
+              for="where-other"
+              class="accessible">Other: </label>
+            <input
+              v-if="where === 'Other'"
+              id="where-other"
+              v-model="other"
+              name="other"
+              type="text">
           </div>
+        </div>
+        <div
+          v-if="errors.length"
+          class="error-message">
+          All fields are required.
         </div>
       </div>
     </form>
@@ -201,7 +201,6 @@ export default {
       this.errors = []
 
       if (!this.where) {
-        console.log(this.where)
 
         this.errors.push('Location required.' + "kjsk")
       }

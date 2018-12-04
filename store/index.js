@@ -78,7 +78,7 @@ const appStore = () => {
       },
       updateSingleFamily(state, singleFamily) {
         console.log(singleFamily)
-        state.form.spouseAge = singleFamily
+        state.form.singleFamily = singleFamily
       },
       updateSpouseAge(state, spouseAge) {
         console.log(spouseAge)

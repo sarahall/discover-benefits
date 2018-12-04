@@ -16,14 +16,11 @@
       </div>
     </div>
 
-    <div class="question">
-      <h3>What is your zip?</h3>
-      You entered: {{ this.$store.state.form.zip }} <br>
+    <Answer
+      :answer="this.$store.state.form.residence"
+      question="Is your primary residence in the City of Philadelphia?"
+      edit-link="step-1" />
 
-      <nuxt-link
-        to="/step-2"
-        @click="submit()">Edit</nuxt-link>
-    </div>
 
     <div class="question">
       <h3>Who are you filling it out for?</h3>
@@ -135,6 +132,15 @@
     </div>
   </section>
 </template>
+<script>
+import Answer from '~/components/Answer.vue'
+
+export default {
+  components: {
+    Answer
+  }
+}
+</script>
 <style>
 
 .page-headings .step{

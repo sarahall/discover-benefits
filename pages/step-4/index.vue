@@ -25,6 +25,25 @@
       </select>
     </div>
     <div class="question">
+      <h2>Does anyone in your household have a physical disability?</h2>
+      <input
+        id="disabled"
+        v-model="disability"
+        type="radio"
+        name="disability"
+        value="Yes">
+      <label
+        for="disabled">Yes</label><br>
+      <input
+        id="not-disabled"
+        v-model="disability"
+        type="radio"
+        name="disability"
+        value="No">
+      <label
+        for="not-disabled">No</label>
+    </div>
+    <div class="question">
       <label for="household-income"><h2>What is your household’s gross income?</h2></label>
       <p class="helper-text">
         Your gross income is the total amount of money you earn before taxes. You can provide an estimate.
@@ -91,6 +110,14 @@ export default {
       set(value) {
         console.log(value)
         this.$store.commit('updateHouseholdSize', value)
+      }
+    },
+    disability: {
+      get() {
+        return this.$store.state.form.disability
+      },
+      set(value) {
+        this.$store.commit('updateDisability', value)
       }
     },
     grossIncome: {

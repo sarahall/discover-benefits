@@ -24,7 +24,7 @@
         v-model="marital"
         type="radio"
         name="marital"
-        value="single">
+        value="Never married">
       <label
         for="single">I've never been married.</label><br>
       <input
@@ -32,7 +32,7 @@
         v-model="marital"
         type="radio"
         name="marital"
-        value="married">
+        value="Married">
       <label
         for="married">I’m married.</label><br>
       <input
@@ -40,7 +40,7 @@
         v-model="marital"
         type="radio"
         name="marital"
-        value="divorced">
+        value="Divorced">
       <label
         for="divorced">I’m divorced.</label><br>
       <input
@@ -48,12 +48,12 @@
         v-model="marital"
         type="radio"
         name="marital"
-        value="widowed">
+        value="Widowed">
       <label
         for="widowed">I’m widowed.</label>
     </div>
     <div
-      v-if="marital === 'married'"
+      v-if="marital === 'Married'"
       class="question">
       <h3>Is your spouse 65 or older?</h3>
       <input
@@ -61,7 +61,7 @@
         v-model="spouseAge"
         type="radio"
         name="spouseAge"
-        value="spouse-over-65">
+        value="yes">
       <label
         for="spouse-over-65">Yes</label><br>
       <input
@@ -69,13 +69,13 @@
         v-model="spouseAge"
         type="radio"
         name="spouseAge"
-        value="spouse-under-65">
+        value="no">
       <label
         for="spouse-under-65">No</label>
     </div>
 
     <div
-      v-if="marital === 'widowed'"
+      v-if="marital === 'Widowed'"
       class="question">
       <h3>Was your spouse 65 or older when they passed away?</h3>
       <input
@@ -83,7 +83,7 @@
         v-model="widowedAge"
         type="radio"
         name="widowedAge"
-        value="widowed-over-65">
+        value="Yes">
       <label
         for="widowed-over-65">Yes</label><br>
       <input
@@ -91,30 +91,11 @@
         v-model="widowedAge"
         type="radio"
         name="widowed-age"
-        value="widowed-under-65">
+        value="No">
       <label
         for="widowed-under-65">No</label>
     </div>
 
-    <div class="question">
-      <h2>Does anyone in your household have a physical disability?</h2>
-      <input
-        id="disabled"
-        v-model="disability"
-        type="radio"
-        name="disability"
-        value="disabled">
-      <label
-        for="disabled">Yes</label><br>
-      <input
-        id="not-disabled"
-        v-model="disability"
-        type="radio"
-        name="disability"
-        value="not-disabled">
-      <label
-        for="not-disabled">No</label>
-    </div>
     <nuxt-link
       :class="isDisabled"
       class="button"
@@ -158,14 +139,6 @@ export default {
       },
       set(value) {
         this.$store.commit('updateMarital', value)
-      }
-    },
-    disability: {
-      get() {
-        return this.$store.state.form.disability
-      },
-      set(value) {
-        this.$store.commit('updateDisability', value)
       }
     },
     spouseAge: {
