@@ -8,7 +8,7 @@
 
     <div class="fixed-head">
       <philaHeader
-        app-title="OneFormPhilly"/>
+        app-title="Discover Benefits"/>
       <philaSubHeader />
     </div>
     <main class="content">
