@@ -82,24 +82,25 @@
             <p class="helper-text">You might answer “at home,” “at the library,” “at a KEYSPOT,” or wherever you might be. By understanding where people use One Form Philly, we can make it better.</p>
             <select
               id="where"
-              v-model="where"
-              @blur="checkField"
-              @click="notDisabled">
+              v-model="where">
               <option
                 disabled
                 value="">Please select one</option>
               <option>At home</option>
               <option>Other</option>
             </select>
-            <label
-              for="where-other"
-              class="accessible">Other: </label>
-            <input
+            <div
               v-if="where === 'Other'"
-              id="where-other"
-              v-model="other"
-              name="other"
-              type="text">
+              class="inline">
+              <label
+                for="other"
+                class="accessible">Other: </label>
+              <input
+                id="other"
+                v-model="other"
+                name="other"
+                type="text">
+            </div>
           </div>
         </div>
         <div
@@ -130,14 +131,29 @@ export default {
   },
   data() {
     return {
-      disabled: true,
       errors: []
     }
   },
   computed: {
     isDisabled() {
-      return {
-        disabled: this.disabled,
+      if (this.who === 'Myself') {
+        return {
+          disabled: this.residence === '' || this.zip === '',
+        }
+      }else if (this.who === 'Someone else') {
+        if (this.where === 'Other') {
+          return {
+            disabled: this.residence === '' || this.zip === '' || this.where == '' || this.other === '',
+          }
+        }else {
+          return {
+            disabled: this.residence === '' || this.zip === '' || this.where === '',
+          }
+        }
+      }else{
+        return {
+          disabled: this.residence === '' || this.zip === '' || this.who === '',
+        }
       }
     },
     residence: {
@@ -153,7 +169,6 @@ export default {
         return this.$store.state.form.zip
       },
       set(value) {
-        console.log(value)
         this.$store.commit('updateForm', { setting: 'zip', value: value })
       }
     },
@@ -191,19 +206,19 @@ export default {
     },
     updateZip(e) {
       this.$store.commit('updateZip', e.target.value)
-    },
-    checkField(e) {
-      if (this.where != '') {
-        console.log(this.where)
-        return true
-      }
-      this.errors = []
-
-      if (!this.where) {
-
-        this.errors.push('Location required.' + "kjsk")
-      }
     }
+    // checkField(e) {
+    //   if (this.where != '') {
+    //     console.log(this.where)
+    //     return true
+    //   }
+    //   this.errors = []
+    //
+    //   if (!this.where) {
+    //
+    //     this.errors.push('Location required.' + "kjsk")
+    //   }
+    // }
   }
 }
 </script>
@@ -211,12 +226,15 @@ export default {
 #where {
   width: 15rem;
 }
-#where-other {
+#other {
   width: 20rem;
   display: inline-block;
   margin-left: 1rem;
 }
 #zip-code {
   width: 7rem;
+}
+.inline {
+  display: inline-block;
 }
 </style>
