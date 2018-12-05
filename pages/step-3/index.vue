@@ -36,7 +36,6 @@
     </div>
 
     <div v-if="housing === 'Own'">
-
       <div class="question">
         <h2>Is it a single family home?</h2>
         <input
@@ -171,10 +170,23 @@ export default {
   },
   computed: {
     isDisabled() {
-      return {
-        disabled:
-          this.housing === '' || this.yearsLived === '' || this.waterBill === ''
+      if ( this.housing === 'Own' ) {
+        return {
+          disabled:
+            this.housing === '' || this.yearsLived === '' || this.waterBill === '' || this.singleFamily === '' || this.deed === '' || this.properties === ''
+        }
+      }else if (this.housing === 'Rent') {
+        return {
+          disabled:
+            this.housing === '' || this.yearsLived === '' || this.waterBill === '' || this.lease === ''
+        }
+      }else{
+        return {
+          disabled:
+            this.housing === '' || this.yearsLived === '' || this.waterBill === ''
+        }
       }
+
     },
     housing: {
       get() {
@@ -236,7 +248,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateForm', { setting: 'waterBill', value: value }) 
+        this.$store.commit('updateForm', { setting: 'waterBill', value: value })
       }
     }
   }
