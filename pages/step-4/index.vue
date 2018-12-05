@@ -83,7 +83,7 @@
         <label for="household-income"><h2>What is their gross income?</h2></label>
         <input
           :id="'income-' + index"
-          v-model="moreIncome.theirIncome"
+          v-model="income.theirIncome"
           class="income"
           type="number"
           step="0.01"
@@ -93,7 +93,7 @@
         <h2>How often do they receive the income?</h2>
         <select
           :id="'frequency-' + index"
-          v-model="moreIncome.theirFrequency"
+          v-model="income.theirFrequency"
           class="frequency">
           <option
             disabled
@@ -182,7 +182,6 @@ export default {
   },
   methods: {
     addIncome() {
-       //var elem = document.createElement('div')
        this.moreIncome.push({
            theirIncome: '',
            theirFrequency: '',
