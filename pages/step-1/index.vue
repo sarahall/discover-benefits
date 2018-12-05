@@ -12,7 +12,7 @@
           v-model="residence"
           type="radio"
           name="residence"
-          value="yes"
+          value="Yes"
           required="required">
         <label
           for="philly">Yes</label><br>
@@ -21,14 +21,14 @@
           v-model="residence"
           type="radio"
           name="residence"
-          value="no"
+          value="No"
           required="required">
         <label
           for="elsewhere">No</label>
       </div>
 
       <div
-        v-if="residence == 'philly'"
+        v-if="residence == 'Yes'"
         class="question">
         <label
           for="zip-code"><h2>What is the ZIP code of your primary residence?</h2></label>
@@ -42,14 +42,14 @@
           required="required"><!--TODO: actually validate zip code -->
       </div>
 
-      <div v-if="residence == 'no'">
+      <div v-if="residence == 'No'">
         <p class="error mtm">
           Because your primary residence is located outside of the City of Philadelphia, you don’t qualify for the programs included in One Form Philly.
         </p>
       </div>
 
       <div
-        v-if="residence == 'yes'"
+        v-if="residence == 'Yes'"
         class="question">
         <h2>Are you filling out this form for yourself or someone else?</h2>
 
@@ -75,7 +75,7 @@
         <label for="someone">I’m helping someone fill it out for their household.</label>
 
         <div v-if="who === 'Someone else'">
-          <p class="callout mtm mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
+          <p class="callout mtl mhm">Since you’re helping someone, make sure to answer the questions from their point of view.</p>
           <div class="question">
             <label for="where"><h2>Where are you filling out this form?</h2></label>
 
@@ -145,8 +145,7 @@ export default {
         return this.$store.state.form.residence
       },
       set(value) {
-        console.log(value)
-        this.$store.commit('updateResidence', value)
+        this.$store.commit('updateForm', { setting: 'residence', value: value })
       }
     },
     zip: {
@@ -155,7 +154,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateZip', value)
+        this.$store.commit('updateForm', { setting: 'zip', value: value })
       }
     },
     who: {
@@ -163,7 +162,7 @@ export default {
         return this.$store.state.form.who
       },
       set(value) {
-        this.$store.commit('updateWho', value)
+        this.$store.commit('updateForm', { setting: 'who', value: value })
       }
     },
     where: {
@@ -171,7 +170,7 @@ export default {
         return this.$store.state.form.where
       },
       set(value) {
-        this.$store.commit('updateWhere', value)
+        this.$store.commit('updateForm', { setting: 'where', value: value })
       }
     },
     other: {
@@ -179,7 +178,7 @@ export default {
         return this.$store.state.form.other
       },
       set(value) {
-        this.$store.commit('updateOther', value)
+        this.$store.commit('updateForm', { setting: 'other', value: value }) 
       }
     }
   },

@@ -1,6 +1,15 @@
 const pkg = require('./package')
 
+export default {
+  router: {
+    scrollBehavior: function (to, from, savedPosition) {
+      return { x: -100, y: -4010 }
+    }
+  }
+}
+
 module.exports = {
+
   mode: 'universal',
 
   /*

@@ -51,14 +51,19 @@
       <input
         id="household-income"
         v-model="grossIncome"
+        class="income"
         name="grossIncome"
-        type="number">
+        type="number"
+        step="0.01"
+        required
+        @keyup="formatIncome">
     </div>
     <div class="question">
       <h2>How often do you receive the income you entered?</h2>
       <select
         id="frequency"
-        v-model="frequency">
+        v-model="frequency"
+        class="frequency">
         <option
           disabled
           value="">Please select one</option>
@@ -69,9 +74,43 @@
       </select>
     </div>
 
-    <div class="add-more">
+    <div
+      v-for="(income, index) in moreIncome"
+      :key="index"
+      class="more-income">
+
+      <div class="question">
+        <label for="household-income"><h2>What is their gross income?</h2></label>
+        <input
+          :id="'income-' + index"
+          v-model="moreIncome.theirIncome"
+          class="income"
+          type="number"
+          step="0.01"
+          required>
+      </div>
+      <div class="question">
+        <h2>How often do they receive the income?</h2>
+        <select
+          :id="'frequency-' + index"
+          v-model="moreIncome.theirFrequency"
+          class="frequency">
+          <option
+            disabled
+            value="">Please select one</option>
+          <option>Every week</option>
+          <option>Every 2 weeks</option>
+          <option>Every month</option>
+          <option>Every year</option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="add-more"
+      @click="addIncome">
       <a>+ Add another person's income</a>
     </div>
+
 
     <nuxt-link
       class="button"
@@ -91,7 +130,9 @@ export default {
   },
   data() {
     return {
-      step: 5
+      step: 5,
+      counter: 0,
+      moreIncome: []
     }
   },
   computed: {
@@ -109,7 +150,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateHouseholdSize', value)
+        this.$store.commit('updateForm', { setting: 'householdSize', value: value })
       }
     },
     disability: {
@@ -117,7 +158,7 @@ export default {
         return this.$store.state.form.disability
       },
       set(value) {
-        this.$store.commit('updateDisability', value)
+        this.$store.commit('updateForm', { setting: 'disability', value: value })
       }
     },
     grossIncome: {
@@ -126,7 +167,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateGrossIncome', value)
+        this.$store.commit('updateForm', { setting: 'grossIncome', value: value })
       }
     },
     frequency: {
@@ -135,9 +176,26 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateFrequency', value)
+        this.$store.commit('updateForm', { setting: 'frequency', value: value })
       }
     }
+  },
+  methods: {
+    addIncome() {
+       //var elem = document.createElement('div')
+       this.moreIncome.push({
+           theirIncome: '',
+           theirFrequency: '',
+       })
+     },
+    currencyFormat(value) {
+      console.log(value)
+      //return value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+      },
+    formatIncome(value) {
+      //this.grossIncome = this.currencyFormat(this.grossIncome)
+
+   }
   }
 }
 </script>
@@ -146,10 +204,10 @@ export default {
 #household-size {
   width: 4rem;
 }
-#household-income {
+.income {
   width: 20rem;
 }
-#frequency {
+.frequency {
   width: 20rem;
 }
 </style>

@@ -107,7 +107,7 @@
         v-model="lease"
         type="radio"
         name="lease"
-        value="yes">
+        value="Yes">
       <label
         for="lease">Yes</label><br>
       <input
@@ -115,7 +115,7 @@
         v-model="lease"
         type="radio"
         name="lease"
-        value="no">
+        value="No">
       <label
         for="no-lease">No</label><br>
     </div>
@@ -139,7 +139,7 @@
         v-model="waterBill"
         type="radio"
         name="waterBill"
-        value="paid">
+        value="Yes">
       <label
         for="water-bill-paid">Yes</label><br>
       <input
@@ -147,7 +147,7 @@
         v-model="waterBill"
         type="radio"
         name="waterBill"
-        value="unpaid">
+        value="Yes">
       <label
         for="water-bill-unpaid">No</label>
     </div>
@@ -182,7 +182,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateHousing', value)
+        this.$store.commit('updateForm', { setting: 'housing', value: value })
       }
     },
     deed: {
@@ -191,7 +191,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateDeed', value)
+        this.$store.commit('updateForm', { setting: 'deed', value: value })
       }
     },
     lease: {
@@ -200,7 +200,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateLease', value)
+        this.$store.commit('updateForm', { setting: 'lease', value: value })
       }
     },
     properties: {
@@ -209,7 +209,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateProperties', value)
+        this.$store.commit('updateForm', { setting: 'properties', value: value })
       }
     },
     singleFamily: {
@@ -218,7 +218,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateSingleFamily', value)
+        this.$store.commit('updateForm', { setting: 'singleFamily', value: value })
       }
     },
     yearsLived: {
@@ -227,7 +227,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateYearsLived', value)
+        this.$store.commit('updateForm', { setting: 'yearsLived', value: value })
       }
     },
     waterBill: {
@@ -236,7 +236,7 @@ export default {
       },
       set(value) {
         console.log(value)
-        this.$store.commit('updateWaterBill', value)
+        this.$store.commit('updateForm', { setting: 'waterBill', value: value }) 
       }
     }
   }

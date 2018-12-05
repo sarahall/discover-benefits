@@ -61,7 +61,7 @@
         v-model="spouseAge"
         type="radio"
         name="spouseAge"
-        value="yes">
+        value="Yes">
       <label
         for="spouse-over-65">Yes</label><br>
       <input
@@ -69,7 +69,7 @@
         v-model="spouseAge"
         type="radio"
         name="spouseAge"
-        value="no">
+        value="No">
       <label
         for="spouse-under-65">No</label>
     </div>
@@ -130,7 +130,7 @@ export default {
         return this.$store.state.form.age
       },
       set(value) {
-        this.$store.commit('updateAge', value)
+        this.$store.commit('updateForm', { setting: 'age', value: value })
       }
     },
     marital: {
@@ -138,7 +138,7 @@ export default {
         return this.$store.state.form.marital
       },
       set(value) {
-        this.$store.commit('updateMarital', value)
+        this.$store.commit('updateForm', { setting: 'marital', value: value })
       }
     },
     spouseAge: {
@@ -146,7 +146,7 @@ export default {
         return this.$store.state.form.spouseAge
       },
       set(value) {
-        this.$store.commit('updateSpouseAge', value)
+        this.$store.commit('updateForm', { setting: 'spouseAge', value: value })
       }
     },
     widowedAge: {
@@ -154,7 +154,7 @@ export default {
         return this.$store.state.form.widowedAge
       },
       set(value) {
-        this.$store.commit('updateWidowedAge', value)
+        this.$store.commit('updateForm', { setting: 'widowedAge', value: value })
       }
     }
   },
