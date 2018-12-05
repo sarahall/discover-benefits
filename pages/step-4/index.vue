@@ -113,6 +113,7 @@
 
 
     <nuxt-link
+      :class="isDisabled"
       class="button"
       to="/review">Finish <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
@@ -138,10 +139,7 @@ export default {
   computed: {
     isDisabled() {
       return {
-        disabled:
-          this.householdSize === '' ||
-          this.grossIncome === '' ||
-          this.frequency === ''
+        disabled: this.householdSize === '' || this.grossIncome === '' || this.frequency === ''
       }
     },
     householdSize: {
@@ -149,7 +147,6 @@ export default {
         return this.$store.state.form.householdSize
       },
       set(value) {
-        console.log(value)
         this.$store.commit('updateForm', { setting: 'householdSize', value: value })
       }
     },
@@ -166,7 +163,6 @@ export default {
         return this.$store.state.form.grossIncome
       },
       set(value) {
-        console.log(value)
         this.$store.commit('updateForm', { setting: 'grossIncome', value: value })
       }
     },
@@ -175,7 +171,6 @@ export default {
         return this.$store.state.form.frequency
       },
       set(value) {
-        console.log(value)
         this.$store.commit('updateForm', { setting: 'frequency', value: value })
       }
     }
@@ -188,7 +183,6 @@ export default {
        })
      },
     currencyFormat(value) {
-      console.log(value)
       //return value.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
       },
     formatIncome(value) {
