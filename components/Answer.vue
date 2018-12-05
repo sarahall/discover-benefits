@@ -8,7 +8,7 @@
         <nuxt-link
           :to="editLink">Edit</nuxt-link>
       </div>
-      <h3>{{ question }}</h3>
+      <h3 class="inline-block">{{ question }}</h3>
       <div>
         <span class="prxl">You entered:</span> {{ answer }}
       </div>
@@ -44,8 +44,8 @@
     }
   }
 </script>
-<style>
-h3 {
+<style scoped>
+h3.inline-block {
   display: inline-block;
 }
 .edit-link {

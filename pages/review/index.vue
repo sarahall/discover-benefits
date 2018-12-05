@@ -140,7 +140,7 @@
     <div>
       <nuxt-link
         class="button"
-        to="/">Submit</nuxt-link>
+        to="/results">Submit</nuxt-link>
     </div>
   </section>
 </template>
@@ -158,6 +158,7 @@ export default {
 <style>
 
 .page-headings .step{
+  padding-top: 0.7rem;
   border-right: 5px solid white;
   text-align: center;
   font-size: 1.1rem;
