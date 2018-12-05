@@ -52,7 +52,6 @@ export default {
   z-index: 1000;
 }
 main {
-  height: calc(100vh - 110px - 36px);
   margin-bottom: 4rem;
   position: relative;
   overflow: scroll;

@@ -43,3 +43,9 @@ button[disabled]:focus {
   opacity: 0.25;
   cursor: not-allowed;
 }
+
+#__nuxt,
+#__layout,
+#application{
+  height: 100vh;
+}
