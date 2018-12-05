@@ -38,7 +38,8 @@ export default {
     PhilaSubHeader,
     PhilaFooter,
     ProgressBar
-  }
+  },
+  middleware: 'redirect'
 }
 </script>
 
@@ -52,6 +53,7 @@ export default {
   z-index: 1000;
 }
 main {
+  height: auto;
   margin-bottom: 4rem;
   position: relative;
   overflow: scroll;

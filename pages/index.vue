@@ -24,6 +24,7 @@
     <p>
       <input
         id="disclaimer"
+        v-model="disclaimer"
         type="checkbox"
         name="interest[]"
         value="disclaimer"
@@ -50,6 +51,16 @@ export default {
   data() {
     return {
       isDisabled: true
+    }
+  },
+  computed: {
+    disclaimer: {
+      get() {
+        return this.$store.state.form.disclaimer
+      },
+      set(value) {
+        this.$store.commit('updateForm', { setting: 'disclaimer', value: value })
+      }
     }
   }
 }

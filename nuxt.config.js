@@ -3,8 +3,9 @@ const pkg = require('./package')
 export default {
   router: {
     scrollBehavior: function (to, from, savedPosition) {
-      return { x: -100, y: -4010 }
-    }
+      return { x: 0, y: 0 }
+    },
+    middleware: 'redirect'
   }
 }
 

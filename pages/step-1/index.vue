@@ -178,7 +178,7 @@ export default {
         return this.$store.state.form.other
       },
       set(value) {
-        this.$store.commit('updateForm', { setting: 'other', value: value }) 
+        this.$store.commit('updateForm', { setting: 'other', value: value })
       }
     }
   },

@@ -7,6 +7,7 @@ const appStore = () => {
       form: {
         age: '',
         disability: '',
+        disclaimer: '',
         frequency: '',
         grossIncome: '',
         deed: '',
