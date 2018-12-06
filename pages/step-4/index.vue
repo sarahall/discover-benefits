@@ -115,7 +115,7 @@
     <nuxt-link
       :class="isDisabled"
       class="button"
-      to="/review">Next <i class="far fa-arrow-right"></i></nuxt-link>
+      to="/review">Confirm your answers <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-3"
       class="prev-button"><i class="far fa-arrow-left"></i> Back</nuxt-link>
