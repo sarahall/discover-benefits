@@ -115,10 +115,10 @@
     <nuxt-link
       :class="isDisabled"
       class="button"
-      to="/review">Finish <i class="far fa-arrow-right"></i></nuxt-link>
+      to="/review">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-3"
-      class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
+      class="prev-button"><i class="far fa-arrow-left"></i> Back</nuxt-link>
   </section>
 </template>
 

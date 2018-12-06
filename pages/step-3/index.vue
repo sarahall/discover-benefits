@@ -157,7 +157,7 @@
       to="/step-4">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/step-2"
-      class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
+      class="prev-button"><i class="far fa-arrow-left"></i> Back</nuxt-link>
   </section>
 </template>
 
@@ -186,7 +186,6 @@ export default {
             this.housing === '' || this.yearsLived === '' || this.waterBill === ''
         }
       }
-
     },
     housing: {
       get() {

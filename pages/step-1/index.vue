@@ -119,7 +119,7 @@
       @click="submit()">Next <i class="far fa-arrow-right"></i></nuxt-link>
     <nuxt-link
       to="/"
-      class="prev-button"><i class="far fa-arrow-left"></i> Previous question</nuxt-link>
+      class="prev-button"><i class="far fa-arrow-left"></i> Back</nuxt-link>
   </section>
 </template>
 <script>
