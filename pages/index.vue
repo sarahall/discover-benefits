@@ -32,7 +32,7 @@
       <label for="disclaimer">I understand that by using One Form Philly, I’m not applying for benefits and I must confirm that I qualify for any programs. I recognize that only select City programs are included in this tool.</label>
     </p>
     <nuxt-link
-      :class="{ disabled: isDisabled }"
+      :class="isDisabled"
       class="button"
       to="/step-1">Get started</nuxt-link>
 
@@ -48,12 +48,12 @@ export default {
     Logo,
     PhilaButton
   },
-  data() {
-    return {
-      isDisabled: true
-    }
-  },
   computed: {
+    isDisabled() {
+      return {
+        disabled: this.disclaimer === ''
+      }
+    },
     disclaimer: {
       get() {
         return this.$store.state.form.disclaimer
