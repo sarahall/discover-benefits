@@ -1,11 +1,8 @@
 <template>
   <div>
-    <h1 class="title">
-      Introduction text
-    </h1>
-    <p>X% of Philadelphians qualify for [City assistance] -- and never use it.</p>
+    <p class="mt">X% of Philadelphians qualify for [City assistance] -- and never use it.</p>
 
-    <p>One Form Philly matches you with City programs that can help you save money and  improve your quality of life. Through these programs, you might:</p>
+    <p>Discover Benefits matches you with City programs that can help you save money and  improve your quality of life. Through these programs, you might:</p>
     <ul>
       <li>
         Lower your water bill.
@@ -29,7 +26,7 @@
         name="interest[]"
         value="disclaimer"
         @click="isDisabled = !isDisabled">
-      <label for="disclaimer">I understand that by using One Form Philly, I’m not applying for benefits and I must confirm that I qualify for any programs. I recognize that only select City programs are included in this tool.</label>
+      <label for="disclaimer">I understand that by using Discover Benefits, I’m not applying for benefits and I must confirm that I qualify for any programs. I recognize that only select City programs are included in this tool.</label>
     </p>
     <nuxt-link
       :class="isDisabled"

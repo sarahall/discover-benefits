@@ -44,7 +44,7 @@
 
       <div v-if="residence == 'No'">
         <p class="error mtm">
-          Because your primary residence is located outside of the City of Philadelphia, you don’t qualify for the programs included in One Form Philly.
+          Because your primary residence is located outside of the City of Philadelphia, you don’t qualify for the programs included in Discover Benefits.
         </p>
       </div>
 
@@ -79,7 +79,7 @@
           <div class="question">
             <label for="where"><h2>Where are you filling out this form?</h2></label>
 
-            <p class="helper-text">You might answer “at home,” “at the library,” “at a KEYSPOT,” or wherever you might be. By understanding where people use One Form Philly, we can make it better.</p>
+            <p class="helper-text">You might answer “at home,” “at the library,” “at a KEYSPOT,” or wherever you might be. By understanding where people use Discover Benefits, we can make it better.</p>
             <select
               id="where"
               v-model="where">

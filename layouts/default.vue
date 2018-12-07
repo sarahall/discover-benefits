@@ -39,7 +39,7 @@ export default {
     PhilaFooter,
     ProgressBar
   },
-  middleware: 'redirect'
+  //middleware: 'redirect'
 }
 </script>
 

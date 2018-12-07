@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1>Your results</h1>
-    <p>You still need to confirm that you qualify and apply to receive benefits. You can also browse the <a>full list of programs</a> that are included in One Form Philly. </p>
+    <p>You still need to confirm that you qualify and apply to receive benefits. You can also browse the <a>full list of programs</a> that are included in Discover Benefits. </p>
 
     <b>Based on your answers, we think that you qualify for:</b>
 

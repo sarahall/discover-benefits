@@ -7,7 +7,7 @@
       Before viewing your results, take a moment to check your answers and make sure that everything looks right.
     </p>
     <p>
-      If you see a mistake, you can make changes by selecting the edit lik to the right of each question.
+      If you see a mistake, you can make changes by selecting the edit link to the right of each question.
     </p>
     <div class="grid-x page-headings mbm">
       <div class="cell medium-3 bg-ghost-gray pas step">

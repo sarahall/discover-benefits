@@ -21,6 +21,7 @@ module.exports = {
     'vue/max-attributes-per-line': 'off',
     'jsx-quotes': ["error", "prefer-single"],
     'semi': ["error", "never"],
+    //"vue/component-name-in-template-casing": ["error", "kebab-case"],
     "vue/html-self-closing": ["error", {
       "html": {
         "void": "never",
