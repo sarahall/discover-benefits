@@ -129,7 +129,7 @@
 
     <Answer
       :answer="this.$store.state.form.grossIncome"
-      question="What is your gross income?"
+      question="What is your household’s gross income?"
       edit-link="step-4" />
 
     <Answer

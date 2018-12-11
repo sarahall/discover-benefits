@@ -53,8 +53,7 @@
         v-model="grossIncome"
         class="income"
         name="grossIncome"
-        type="number"
-        step="0.01"
+        type="text"
         required
         @keyup="formatIncome">
     </div>

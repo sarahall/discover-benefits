@@ -1,8 +1,6 @@
 <template>
   <div>
-    <p class="mtl">X% of Philadelphians qualify for [City assistance] -- and never use it.</p>
-
-    <p>Discover Benefits matches you with City programs that can help you save money and  improve your quality of life. Through these programs, you might:</p>
+    <p class="mtl">Discover Benefits matches you with City programs that can help you save money and  improve your quality of life. Through these programs, you might:</p>
     <ul>
       <li>
         Lower your water bill.
