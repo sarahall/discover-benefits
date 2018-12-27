@@ -23,7 +23,7 @@ export default {
     feedbackLink: {
       type: String,
       required: true,
-      default: 'https://www.phila.gov/feedback/'
+      default: 'https://docs.google.com/forms/d/e/1FAIpQLSco7CKGe5L8FVWalleTPo6isnp5fso_A-SdWLLhFeFYkGfqpQ/viewform'
     }
   }
 }
